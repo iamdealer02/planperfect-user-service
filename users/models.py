@@ -17,6 +17,7 @@ class UserManager(DefaultUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class Users(AbstractUser):
+    
     username = None  # Removing the username field
     fname = models.CharField(max_length=50)
     lname = models.CharField(max_length=50)
