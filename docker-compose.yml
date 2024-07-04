@@ -10,14 +10,22 @@ services:
       - .:/app
     depends_on:
       - db
+    networks:
+      - services-network
 
   db:
     image: mysql:latest
     restart: always
     environment:
       MYSQL_DATABASE: user
-      MYSQL_ROOT_PASSWORD : root
+      MYSQL_ROOT_PASSWORD: root  # Corrected the space before the colon
     volumes:
       - .dbdata:/var/lib/mysql
     ports:
       - 33066:3306
+    networks:
+      - services-network  # Added network configuration
+
+networks:
+  services-network:
+    external: true
